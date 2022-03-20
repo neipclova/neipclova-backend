@@ -2,7 +2,7 @@ version: '3.8'
 services:
   db:
     volumes:
-      - /var/lib/docker/volumes/neipclova/_da:/var/lib/postgresql/data
+      - ./postgreData:/var/lib/postgresql/data
     container_name: pg_container
     image: postgres
     restart: always

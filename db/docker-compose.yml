@@ -6,6 +6,9 @@ services:
     container_name: pg_container
     image: postgres
     restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
     ports:
       - "5432:5432"
   pgadmin:

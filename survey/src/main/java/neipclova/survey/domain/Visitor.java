@@ -2,12 +2,14 @@ package neipclova.survey.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@NoArgsConstructor
 @Getter @Setter
 public class Visitor {
 

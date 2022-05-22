@@ -19,9 +19,9 @@ public class ApiCallLog {
 
     private String client_server_info;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "EnumMethodType")
-    private String method_type;
+    private EnumMethodType method_type;
 
     private String request_body;
     private String header;

@@ -23,9 +23,9 @@ public class VisitorResultShare {
     private Visitor visitor;
 
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "EnumActionType")
-    private String action_type;
+    private EnumActionType action_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp

@@ -1,6 +1,6 @@
 package neipclova.survey.repository;
 
-import neipclova.survey.domain.Member;
+import neipclova.survey.domain.VisitorSurveyAnswer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,22 +13,28 @@ public class VisitorSurveyAnswerRepository {
 
     private final EntityManager em;
 
-    public void save(VisitoSurveyAnswer visitorSurveyAnswer) { em.persist(visitorSurveyAnswer); }
+    public void save(VisitorSurveyAnswer visitorSurveyAnswer) {
+        em.persist(visitorSurveyAnswer);
+    }
 
-    private VisitorSurveyAnswer remove(Long id) {
-        VisitorSurveyAnswer v = em.find(visitorSurveyAnswer.class, id);
+    private void remove(Long id) {
+        VisitorSurveyAnswer v = em.find(VisitorSurveyAnswer.class, id);
         em.remove(v);
     }
 
-    public VisitorSurveyAnswer findOne(Long id) { return em.find(visitorSurveyAnswer.class, id); }
+    public VisitorSurveyAnswer findOne(Long id) {
+        return em.find(VisitorSurveyAnswer.class, id);
+    }
 
     public List<VisitorSurveyAnswer> findAll() {
-        return em.createQuery("select v from VisitorSurveyAnswer v", visitorSurveyAnswer.class)
+        return em.createQuery("select v from VisitorSurveyAnswer v", VisitorSurveyAnswer.class)
             .getResultList();
     }
 
-    public List<VisitorSurveyAnswer> findByName(String name) {
-        return em.createQuery("select v from VisitorSurveyAnswer v where v.name = :name", visitorSurveyAnswer.class)
-            .setParameter("name", name)
+    public List<VisitorSurveyAnswer> findById(Integer id) {
+        return em.createQuery("select v from VisitorSurveyAnswer v where v.id = :id",
+                VisitorSurveyAnswer.class)
+            .setParameter("id", id)
             .getResultList();
     }
+}

@@ -19,12 +19,19 @@ public class VisitorResultShare {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = 'visitor_id')
+    @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
+
+    @Enumerated
+    @Column(name = "EnumActionType")
     private String action_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
-    private LocalDateTime created_at;
+    private Timestamp created_at;
+}
+
+enum EnumActionType {
+    KAKAO_SHARE, URL_SHARE
 }

@@ -18,28 +18,14 @@ public class VisitorSurveyAnswer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = 'visitor_id')
+    @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
     private Integer question_order;
-
-    @Enumerated
-    @Column(name = 'EnumSurveyQuestion')
     private Integer question;
-
-    @Enumerated
-    @Column(name = 'EnumSurveyAnswer')
     private Integer answer;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
     private Timestamp timestamp;
-}
-
-public enum EnumSurveyQuestion {
-
-}
-
-public enum EnumSurveyAnswer {
-
 }

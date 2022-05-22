@@ -25,5 +25,5 @@ public class Visitor {
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
-    private Timestamp timestamp;
+        private Timestamp timestamp;
 }

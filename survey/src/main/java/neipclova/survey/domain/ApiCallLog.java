@@ -20,8 +20,8 @@ public class ApiCallLog {
     private String client_server_info;
 
     @Enumerated
-    @Column(name = 'EnumEndpointType')
-    private String endpoint_type;
+    @Column(name = "EnumMethodType")
+    private String method_type;
 
     private String request_body;
     private String header;
@@ -32,6 +32,6 @@ public class ApiCallLog {
     private Timestamp timestamp;
 }
 
-public enum EnumEndpointType {
-
+enum EnumMethodType {
+    POST, GET, DELETE, PUT
 }

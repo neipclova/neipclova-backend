@@ -1,6 +1,6 @@
 package neipclova.survey.repository;
 
-import neipclova.survey.domain.Member;
+import neipclova.survey.domain.VisitorResultShare;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,22 +13,28 @@ public class VisitorResultShareRepository {
 
     private final EntityManager em;
 
-    public void save(VisitorResultShare visitorResultShare) { em.persist(visitorResultShare); }
+    public void save(VisitorResultShare visitorResultShare) {
+        em.persist(visitorResultShare);
+    }
 
-    private VisitorResultShare remove(Long id) {
-        VisitorResultShare v = em.find(visitorResultShare.class, id);
+    private void remove(Long id) {
+        VisitorResultShare v = em.find(VisitorResultShare.class, id);
         em.remove(v);
     }
 
-    public VisitorResultShare findOne(Long id) { return em.find(visitorResultShare.class, id); }
+    public VisitorResultShare findOne(Long id) {
+        return em.find(VisitorResultShare.class, id);
+    }
 
     public List<VisitorResultShare> findAll() {
-        return em.createQuery("select v from VisitorResultShare v", visitorResultShare.class)
+        return em.createQuery("select v from VisitorResultShare v", VisitorResultShare.class)
             .getResultList();
     }
 
-    public List<VisitorResultShare> findByName(String name) {
-        return em.createQuery("select v from VisitorResultShare v where v.name = :name", visitorResultShare.class)
-            .setParameter("name", name)
+    public List<VisitorResultShare> findById(Integer id) {
+        return em.createQuery("select v from VisitorResultShare v where v.id = :id",
+                VisitorResultShare.class)
+            .setParameter("id", id)
             .getResultList();
     }
+}

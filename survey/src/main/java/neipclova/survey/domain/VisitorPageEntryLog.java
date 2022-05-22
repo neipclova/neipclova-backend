@@ -18,18 +18,15 @@ public class VisitorPageEntryLog {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = 'visitor_id')
+    @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
     @Enumerated
-    @Column(name = 'EnumSurveyResultType')
+    @Column(name = "EnumSurveyResultType")
     private String page_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
-    private LocalDateTime created_at;
+    private Timestamp created_at;
 }
 
-public enum EnumSurveyResultType {
-
-}

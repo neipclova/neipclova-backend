@@ -1,6 +1,6 @@
 package neipclova.survey.repository;
 
-import neipclova.survey.domain.Member;
+import neipclova.survey.domain.ApiCallLog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,22 +13,27 @@ public class ApiCallLogRepository {
 
     private final EntityManager em;
 
-    public void save(ApiCallLog apiCallLog) { em.persist(apiCallLog); }
+    public void save(ApiCallLog apiCallLog) {
+        em.persist(apiCallLog);
+    }
 
-    private ApiCallLog remove(Long id) {
-        ApiCallLog a = em.find(apiCallLog.class, id);
+    private void remove(Long id) {
+        ApiCallLog a = em.find(ApiCallLog.class, id);
         em.remove(a);
     }
 
-    public ApiCallLog findOne(Long id) { return em.find(apiCallLog.class, id); }
+    public ApiCallLog findOne(Long id) {
+        return em.find(ApiCallLog.class, id);
+    }
 
     public List<ApiCallLog> findAll() {
-        return em.createQuery("select a from ApiCallLog a", apiCallLog.class)
+        return em.createQuery("select a from ApiCallLog a", ApiCallLog.class)
             .getResultList();
     }
 
-    public List<ApiCallLog> findByName(String name) {
-        return em.createQuery("select a from ApiCallLog a where a.name = :name", apiCallLog.class)
-            .setParameter("name", name)
+    public List<ApiCallLog> findById(Integer id) {
+        return em.createQuery("select a from ApiCallLog a where a.id = :id", ApiCallLog.class)
+            .setParameter("id", id)
             .getResultList();
     }
+}

@@ -15,11 +15,11 @@ public class VisitorSurveyResult {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = 'visitor_id')
+    @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
     @Enumerated
-    @Column(name = 'EnumSurveyResultType')
+    @Column(name = "EnumSurveyResultType")
     private String result_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -27,6 +27,6 @@ public class VisitorSurveyResult {
     private Timestamp timestamp;
 }
 
-public enum EnumSurveyResultType {
-
+enum EnumSurveyResultType {
+    TRIP, BAND, DANCE, CLIMBING, READING, STOCK_INVESTMENT, DEBATE, CALLIGRAPHY, STAY_HYDRATED
 }

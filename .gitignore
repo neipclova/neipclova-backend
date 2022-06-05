@@ -6,6 +6,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 .db/postgreData
+/db/postgreData
 
 ### STS ###
 .apt_generated

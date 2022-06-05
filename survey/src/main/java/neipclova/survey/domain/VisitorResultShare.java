@@ -22,16 +22,11 @@ public class VisitorResultShare {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "EnumActionType")
-    private EnumActionType action_type;
+    @ManyToOne
+    @JoinColumn(name = "actiontype_id")
+    private ActionType action_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
     private Timestamp created_at;
-}
-
-enum EnumActionType {
-    KAKAO_SHARE, URL_SHARE
 }

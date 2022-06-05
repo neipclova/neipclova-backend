@@ -21,9 +21,9 @@ public class VisitorPageEntryLog {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "EnumSurveyResultType")
-    private EnumSurveyResultType page_type;
+    @ManyToOne
+    @JoinColumn(name = "resulttype_id")
+    private ResultType page_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp

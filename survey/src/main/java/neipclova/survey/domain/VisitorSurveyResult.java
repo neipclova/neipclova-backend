@@ -19,15 +19,11 @@ public class VisitorSurveyResult implements Serializable {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "EnumSurveyResultType")
-    private EnumSurveyResultType result_type;
+    @ManyToOne
+    @JoinColumn(name = "resulttype_id")
+    private ResultType result_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreationTimestamp
     private Timestamp timestamp;
-}
-
-enum EnumSurveyResultType {
-    TRIP, BAND, DANCE, CLIMBING, READING, STOCK_INVESTMENT, DEBATE, CALLIGRAPHY, STAY_HYDRATED
 }

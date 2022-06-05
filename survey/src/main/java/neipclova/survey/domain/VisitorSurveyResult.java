@@ -22,6 +22,7 @@ public class VisitorSurveyResult extends TimeEntity {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
+<<<<<<< HEAD
     @Column(name = "survey_type")
     @Enumerated(EnumType.STRING)
     private EnumSurveyType surveyType;
@@ -29,4 +30,13 @@ public class VisitorSurveyResult extends TimeEntity {
     @ManyToOne
     @JoinColumn(name = "survey_result_type_id", nullable = true)
     private SurveyResultType surveyResultType;
+=======
+    @ManyToOne
+    @JoinColumn(name = "resulttype_id")
+    private ResultType result_type;
+
+    @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @CreationTimestamp
+    private Timestamp timestamp;
+>>>>>>> b3ac223 (feat: add DB schema for survey contents)
 }

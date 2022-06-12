@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,20 +13,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Question {
+public class SurveyType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String question_student;
-
-    private String question_worker;
-
-    private String image_uri;
-
-    @ManyToOne
-    @JoinColumn(name = "surveytype_id")
-    private SurveyType surveyType;
+    @Column(name = "survey_type")
+    private String surveyType;
 
 }

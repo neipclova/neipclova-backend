@@ -12,7 +12,11 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
 logging.level:
   org.hibernate.SQL: debug
 #  org.hibernate.type: trace

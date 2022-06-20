@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  prometheus:
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    container_name: prometheus_container
+    image: prom/prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+  grafana:
+    container_name: grafana_container
+    image: grafana/grafana
+    restart: always
+    ports:
+      - "3000:3000"

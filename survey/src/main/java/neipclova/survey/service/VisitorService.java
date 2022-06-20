@@ -16,7 +16,6 @@ public class VisitorService {
 
     @Transactional
     public Long addVisitor(Visitor visitor) {
-        System.out.println("visiisisis");
         visitorRepository.save(visitor);
         return visitor.getId();
     }

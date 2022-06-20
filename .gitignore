@@ -7,6 +7,7 @@ build/
 !**/src/test/**/build/
 .db/postgreData
 /db/postgreData
+.DS_Store
 
 ### STS ###
 .apt_generated

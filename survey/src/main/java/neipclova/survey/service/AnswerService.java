@@ -2,7 +2,8 @@ package neipclova.survey.service;
 
 import lombok.RequiredArgsConstructor;
 import neipclova.survey.domain.Answer;
-import neipclova.survey.repository.AnswerRepository;
+import neipclova.survey.domain.VisitorSurveyAnswer;
+import neipclova.survey.repository.VisitorSurveyAnswerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AnswerService {
 
-    private final AnswerRepository answerRepository;
+    private final VisitorSurveyAnswerRepository visitorSurveyAnswerRepository;
 
     @Transactional
-    public Long addAnswer(Answer answer) {
-        answerRepository.save(answer);
+    public Long addAnswer(VisitorSurveyAnswer answer) {
+        visitorSurveyAnswerRepository.save(answer);
         return answer.getId();
     }
 

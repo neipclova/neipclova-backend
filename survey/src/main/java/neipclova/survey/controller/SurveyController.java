@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class SurveyController {
 
-    @Autowired
     public Question question;
     public Answer answer;
     public SurveyService surveyService;

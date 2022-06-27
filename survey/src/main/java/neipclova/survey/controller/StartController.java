@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public class StartController {
 
-    @Autowired
     private StartService startService;
 
     @PostMapping

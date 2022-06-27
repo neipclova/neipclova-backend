@@ -6,12 +6,13 @@ import neipclova.survey.domain.Question;
 import neipclova.survey.domain.Answer;
 import neipclova.survey.repository.QuestionRepository;
 import neipclova.survey.repository.AnswerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class SurveyService {
-
+    @Autowired
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
 

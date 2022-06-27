@@ -1,6 +1,5 @@
 package neipclova.survey.domain;
 
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -12,15 +11,17 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @NoArgsConstructor
 @Getter @Setter
-public class VisitorSurveyResult implements Serializable {
+public class VisitorSurveyResult {
 
     @Id
+    private Long visitor_id;
+
     @OneToOne
-    @JoinColumn(name = "visitor_id")
+    @PrimaryKeyJoinColumn
     private Visitor visitor;
 
     @ManyToOne
-    @JoinColumn(name = "resulttype_id")
+    @JoinColumn(name = "result_type_id")
     private ResultType result_type;
 
     @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

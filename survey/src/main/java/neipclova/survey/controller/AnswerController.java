@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AnswerController {
 
-    @Autowired
-    private VisitorSurveyAnswerRepository visitorSurveyAnswerRepository;
     private AnswerService answerService;
 
     @PostMapping("/answer/{survey_type}")

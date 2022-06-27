@@ -3,6 +3,7 @@ package neipclova.survey.service;
 import neipclova.survey.domain.Member;
 import neipclova.survey.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberService {
-
+    @Autowired
     private final MemberRepository memberRepository;
 
     /**

@@ -1,7 +1,6 @@
 package neipclova.survey.controller;
 
 import java.util.HashMap;
-import neipclova.survey.domain.Member;
 import neipclova.survey.domain.Visitor;
 import neipclova.survey.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;

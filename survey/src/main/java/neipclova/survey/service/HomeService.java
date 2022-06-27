@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class HomeService {
-
+    @Autowired
     private final VisitorRepository visitorRepository;
 
     public Integer getTotalVisitorNum() {

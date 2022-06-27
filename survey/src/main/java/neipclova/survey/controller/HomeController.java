@@ -1,7 +1,6 @@
 package neipclova.survey.controller;
 
 import java.util.HashMap;
-
 import neipclova.survey.service.HomeService;
 import org.springframework.web.bind.annotation.GetMapping;
 

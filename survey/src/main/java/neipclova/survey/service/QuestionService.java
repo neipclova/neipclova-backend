@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class QuestionService {
-    @Autowired
+
     private final QuestionRepository questionRepository;
 
     @Transactional

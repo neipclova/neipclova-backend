@@ -33,4 +33,8 @@ public class Answer {
 
     private String score;
 
+    @ManyToOne
+    @JoinColumn(name = "surveytype_id")
+    private SurveyType surveyType;
+
 }

@@ -25,4 +25,6 @@ public class VisitorService {
         return visitor.getId();
     }
 
+    public Visitor findOne(Long visitorId) { return visitorRepository.findOne(visitorId); }
+
 }

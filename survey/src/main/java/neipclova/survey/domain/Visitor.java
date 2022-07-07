@@ -1,5 +1,6 @@
 package neipclova.survey.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,8 @@ public class Visitor {
     private String agent_browser;
     private String access_url;
 
-    @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreationTimestamp
-        private Timestamp timestamp;
+    @Column(name = "created_at")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+    private Timestamp timestamp;
 
 }

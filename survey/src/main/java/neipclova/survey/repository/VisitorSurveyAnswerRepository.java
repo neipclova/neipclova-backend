@@ -1,37 +1,16 @@
 package neipclova.survey.repository;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-
-import org.springframework.stereotype.Repository;
-
-import lombok.RequiredArgsConstructor;
-import neipclova.survey.domain.Answer;
-import neipclova.survey.domain.Member;
+import neipclova.survey.domain.Visitor;
+import neipclova.survey.domain.VisitorResultShare;
 import neipclova.survey.domain.VisitorSurveyAnswer;
-import neipclova.survey.domain.VisitorSurveyResult;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-@Repository
-@RequiredArgsConstructor
-public class VisitorSurveyAnswerRepository {
+public interface VisitorSurveyAnswerRepository extends JpaRepository<VisitorSurveyAnswer, Long> {
 
-    private final EntityManager em;
+    @Query("select a.score from VisitorSurveyAnswer vsa left join Answer a on vsa.question = a.question and vsa.answer = a.answer_order where vsa.visitor = :visitor")
+    public List<String> findScoreByVisitorId(@Param("visitor") Visitor visitor);
 
-    public List<VisitorSurveyAnswer> findByByVisitorId(Long visitor_id) {
-        return em.createQuery("select question, answer from VisitorSurveyAnswer where visitor=:visitor_id",VisitorSurveyAnswer.class)
-                .setParameter("visitor_id",visitor_id)
-                .getResultList();
-    }
-
-    public List<Answer> scoreByVisitorId(Long visitor_id) {
-        return em.createQuery("select score from Answer as a left join VisitorSurveyAnswer as vsa on a.answer_order = vsa.answer and a.question = vsa.question where vsa.visitor=:visitor_id",
-                              Answer.class)
-                 .setParameter("visitor_id",visitor_id)
-                 .getResultList();
-    }
-
-    public void save(VisitorSurveyAnswer visitorSurveyAnswer) {
-        em.persist(visitorSurveyAnswer);
-    }
 }

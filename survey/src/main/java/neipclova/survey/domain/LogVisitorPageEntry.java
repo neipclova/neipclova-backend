@@ -5,13 +5,14 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import org.hibernate.annotations.CreationTimestamp;
+
+import neipclova.survey.domain.common.TimeEntity;
+import neipclova.survey.domain.enums.EnumPageType;
 
 @Entity
 @NoArgsConstructor
 @Getter @Setter
-public class VisitorPageEntryLog {
+public class LogVisitorPageEntry extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +22,12 @@ public class VisitorPageEntryLog {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
+    @Column(name = "page_type")
     @Enumerated(EnumType.STRING)
-    @Column(name = "EnumSurveyResultType")
-    private EnumSurveyResultType page_type;
+    private EnumPageType pageType;
 
-    @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreationTimestamp
-    private Timestamp created_at;
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = true)
+    private Question question;
 }
 

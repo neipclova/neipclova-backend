@@ -12,6 +12,11 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
     generate-ddl: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations: classpath:initSurveyResultType.sql, classpath:initQuestion.sql, classpath:initOption.sql
+      mode: always
 
 logging.level:
   org.hibernate.SQL: debug

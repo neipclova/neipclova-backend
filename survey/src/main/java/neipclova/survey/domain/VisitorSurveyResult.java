@@ -1,33 +1,32 @@
 package neipclova.survey.domain;
 
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import org.hibernate.annotations.CreationTimestamp;
+
+import neipclova.survey.domain.common.TimeEntity;
+import neipclova.survey.domain.enums.EnumSurveyType;
 
 @Entity
 @NoArgsConstructor
 @Getter @Setter
-public class VisitorSurveyResult implements Serializable {
+public class VisitorSurveyResult extends TimeEntity {
 
     @Id
-    @OneToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
+    @Column(name = "survey_type")
     @Enumerated(EnumType.STRING)
-    @Column(name = "EnumSurveyResultType")
-    private EnumSurveyResultType result_type;
+    private EnumSurveyType surveyType;
 
-    @Column(name="created_at", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @CreationTimestamp
-    private Timestamp timestamp;
-}
-
-enum EnumSurveyResultType {
-    TRIP, BAND, DANCE, CLIMBING, READING, STOCK_INVESTMENT, DEBATE, CALLIGRAPHY, STAY_HYDRATED
+    @ManyToOne
+    @JoinColumn(name = "survey_result_type_id", nullable = true)
+    private SurveyResultType surveyResultType;
 }

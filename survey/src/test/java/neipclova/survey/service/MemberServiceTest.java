@@ -1,6 +1,5 @@
 package neipclova.survey.service;
 
-import neipclova.survey.domain.Member;
 import neipclova.survey.repository.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

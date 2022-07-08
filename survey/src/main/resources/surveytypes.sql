@@ -1,1 +1,0 @@
-INSERT INTO public.survey_type(survey_type) VALUES ('club');

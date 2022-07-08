@@ -1,34 +1,50 @@
 package neipclova.survey.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import neipclova.survey.domain.enums.EnumSurveyType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String question_student;
+    @Column(name = "question_order")
+    private Integer questionOrder;
 
-    private String question_worker;
+    @Type(type = "jsonb")
+    @Column(name = "question", columnDefinition = "jsonb")
+    private QuestionJson question;
 
-    private String image_uri;
+    @Column(name = "image_uri", nullable = true)
+    private String imageUri;
 
-    @ManyToOne
-    @JoinColumn(name = "surveytype_id")
-    private SurveyType surveyType;
+    @Column(name = "survey_type")
+    @Enumerated(EnumType.STRING)
+    private EnumSurveyType surveyType;
+}
 
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+class QuestionJson {
+    @JsonProperty("student")
+    public String student;
+
+    @JsonProperty("worker")
+    public String worker;
 }

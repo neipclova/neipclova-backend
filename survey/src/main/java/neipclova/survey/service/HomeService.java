@@ -13,8 +13,8 @@ public class HomeService {
 
     private final VisitorRepository visitorRepository;
 
-    public List<Visitor> getTotalVisitor() {
-        return visitorRepository.findAll();
+    public Integer getTotalVisitorNum() {
+        return visitorRepository.findAll().size();
     }
 
 

@@ -1,18 +1,18 @@
 package neipclova.survey.domain;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 import neipclova.survey.domain.common.TimeEntity;
+import neipclova.survey.domain.enums.EnumShareActionType;
 
-@Entity
+
+@Getter
 @NoArgsConstructor
-@Getter @Setter
-public class VisitorSurveyAnswer extends TimeEntity {
-
+@Entity
+public class VisitorSurveyResultShare extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,11 +21,7 @@ public class VisitorSurveyAnswer extends TimeEntity {
     @JoinColumn(name = "visitor_survey_result_id")
     private VisitorSurveyResult visitorSurveyResult;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private Question question;
-
-    @ManyToOne
-    @JoinColumn(name = "option_id")
-    private Option option;
+    @Column(name = "share_action_type")
+    @Enumerated(EnumType.STRING)
+    private EnumShareActionType shareActionType;
 }

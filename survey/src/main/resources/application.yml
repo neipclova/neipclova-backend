@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/postgres
+    url: jdbc:postgresql://localhost:5432/postgres
     username: root
     password: root
   jpa:
@@ -15,7 +15,7 @@ spring:
     defer-datasource-initialization: true
   sql:
     init:
-      data-locations: classpath:actiontypes.sql, classpath:surveytypes.sql, classpath:resulttypes.sql, classpath:questions.sql, classpath:answers.sql
+      data-locations: classpath:initSurveyResultType.sql, classpath:initQuestion.sql, classpath:initOption.sql
       mode: always
 
 logging.level:

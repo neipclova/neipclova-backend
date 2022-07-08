@@ -1,11 +1,14 @@
 package neipclova.survey.controller;
 
 import neipclova.survey.domain.VisitorSurveyAnswer;
+import neipclova.survey.dto.SaveVisitorSurveyAnswerDto;
 import neipclova.survey.service.AnswerService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 public class AnswerController {
@@ -16,10 +19,12 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
-    @PostMapping("/answer/{survey_type}")
-    public void getSurveyAnswer(@RequestBody VisitorSurveyAnswer vsa,
-        @PathVariable String survey_type) {
-        answerService.addAnswer(vsa);
+    @PostMapping("/answer")
+    public void saveVisitorSurveyAnswer(@RequestBody @Valid SaveVisitorSurveyAnswerDto saveVisitorSurveyAnswerDto) throws IllegalAccessException {
+        Long VisitorSurveyResultId = saveVisitorSurveyAnswerDto.getVisitorSurveyResultId();
+        Long questionId = saveVisitorSurveyAnswerDto.getQuestionId();
+        Long optionId = saveVisitorSurveyAnswerDto.getOptionId();
+        answerService.saveVisitorSurveyAnswer(VisitorSurveyResultId, questionId, optionId);
     }
 
 

@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import neipclova.survey.domain.Visitor;
 import neipclova.survey.domain.VisitorSurveyAnswer;
+import neipclova.survey.domain.enums.EnumMbtiType;
 import neipclova.survey.repository.VisitorSurveyAnswerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class VisitorSurveyAnswerService {
     }
 
     @Transactional
-    public List<String> getScores(Visitor visitor) {
+    public List<EnumMbtiType> getScores(Visitor visitor) {
         return visitorSurveyAnswerRepository.findScoreByVisitorId(visitor);
     }
 

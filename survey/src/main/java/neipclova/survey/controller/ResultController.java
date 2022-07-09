@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import java.util.Map;
+
+import neipclova.survey.domain.enums.EnumMbtiType;
 import neipclova.survey.service.VisitorService;
 import neipclova.survey.service.VisitorSurveyAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class ResultController {
         // 답변에 매칭되는 mbti score 리스트 가져오기
         Long visitorId = visitor.getId();
         Visitor visitor1 = visitorService.findOne(visitorId);
-        List<String> answers = visitorSurveyAnswerService.getScores(visitor1);
+        List<EnumMbtiType> answers = visitorSurveyAnswerService.getScores(visitor1);
 
         // mbti 계산하기
         StringBuilder mbti = new StringBuilder();

@@ -8,92 +8,92 @@ import java.util.List;
 import java.util.Map;
 
 import neipclova.survey.domain.enums.EnumMbtiType;
+import neipclova.survey.domain.enums.EnumResultType;
+import neipclova.survey.domain.enums.EnumSurveyType;
+import neipclova.survey.repository.VisitorSurveyAnswerRepository;
 import neipclova.survey.service.VisitorService;
 import neipclova.survey.service.VisitorSurveyAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import neipclova.survey.domain.Visitor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/result/club")
 public class ResultController {
 
-    @Autowired
-    private VisitorSurveyAnswerService visitorSurveyAnswerService;
+    private final VisitorSurveyAnswerService visitorSurveyAnswerService;
+    private final VisitorService visitorService;
 
-    @Autowired
-    private VisitorService visitorService;
+    public ResultController(VisitorSurveyAnswerService visitorSurveyAnswerService, VisitorService visitorService){
+        this.visitorSurveyAnswerService = visitorSurveyAnswerService;
+        this.visitorService = visitorService;
+    }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> SurveyResult(@RequestBody Visitor visitor) {
+    @PostMapping("/result/{survey_type}")
+    public ResponseEntity<Map<String, Object>> scoreResult(@PathVariable EnumSurveyType survey_type,
+                                                           @RequestParam Long visitor_survey_result_id) {
 
         // 답변에 매칭되는 mbti score 리스트 가져오기
-        Long visitorId = visitor.getId();
-        Visitor visitor1 = visitorService.findOne(visitorId);
-        List<EnumMbtiType> answers = visitorSurveyAnswerService.getScores(visitor1);
+        List<EnumMbtiType> answers = visitorSurveyAnswerService.getScores(visitor_survey_result_id);
 
         // mbti 계산하기
         StringBuilder mbti = new StringBuilder();
 
-        int Ecount = Collections.frequency(answers, "E");
-        int Icount = Collections.frequency(answers, "I");
-        int Ncount = Collections.frequency(answers, "N");
-        int Scount = Collections.frequency(answers, "S");
-        int Fcount = Collections.frequency(answers, "F");
-        int Tcount = Collections.frequency(answers, "T");
-        int Jcount = Collections.frequency(answers, "J");
-        int Pcount = Collections.frequency(answers, "P");
+        int Ecount = Collections.frequency(answers, EnumMbtiType.E);
+        int Icount = Collections.frequency(answers, EnumMbtiType.I);
+        int Ncount = Collections.frequency(answers, EnumMbtiType.N);
+        int Scount = Collections.frequency(answers, EnumMbtiType.S);
+        int Fcount = Collections.frequency(answers, EnumMbtiType.F);
+        int Tcount = Collections.frequency(answers, EnumMbtiType.T);
+        int Jcount = Collections.frequency(answers, EnumMbtiType.J);
+        int Pcount = Collections.frequency(answers, EnumMbtiType.P);
 
         if (Ecount - Icount > 0) {
-            mbti.append("E");
+            mbti.append(EnumMbtiType.E);
         } else {
-            mbti.append("I");
+            mbti.append(EnumMbtiType.I);
         }
 
         if (Ncount - Scount > 0) {
-            mbti.append("N");
+            mbti.append(EnumMbtiType.N);
         } else {
-            mbti.append("S");
+            mbti.append(EnumMbtiType.S);
         }
 
         if (Fcount - Tcount > 0) {
-            mbti.append("F");
+            mbti.append(EnumMbtiType.F);
         } else {
-            mbti.append("T");
+            mbti.append(EnumMbtiType.T);
         }
 
         if (Jcount - Pcount > 0) {
-            mbti.append("J");
+            mbti.append(EnumMbtiType.J);
         } else {
-            mbti.append("P");
+            mbti.append(EnumMbtiType.P);
         }
 
         StringBuilder club = new StringBuilder();
 
         // mbti에 따른 result type 리턴하기
         if (Arrays.asList("ENFJ", "ESFJ").contains(mbti.toString())) {
-            club.append("STAY_HYDRATED");
+            club.append(EnumResultType.STAY_HYDRATED);
         } else if (Arrays.asList("ISJF", "ISFP", "ISTJ").contains(mbti.toString())) {
-            club.append("CALLIGRAPHY");
+            club.append(EnumResultType.CALLIGRAPHY);
         } else if (Arrays.asList("ENTP", "INTP").contains(mbti.toString())) {
-            club.append("DEBATE");
+            club.append(EnumResultType.DEBATE);
         } else if (Arrays.asList("INTJ").contains(mbti.toString())) {
-            club.append("STOCK_INVESTMENT");
+            club.append(EnumResultType.STOCK_INVESTMENT);
         } else if (Arrays.asList("INFP").contains(mbti.toString())) {
-            club.append("READING");
+            club.append(EnumResultType.READING);
         } else if (Arrays.asList("ESTP").contains(mbti.toString())) {
-            club.append("CLIMBING");
+            club.append(EnumResultType.CLIMBING);
         } else if (Arrays.asList("ENFP", "ESFP").contains(mbti.toString())) {
-            club.append("DANCE");
+            club.append(EnumResultType.DANCE);
         } else if (Arrays.asList("ESTJ", "ENTJ", "ISTJ").contains(mbti.toString())) {
-            club.append("BAND");
+            club.append(EnumResultType.BAND);
         } else if (Arrays.asList("INFJ").contains(mbti.toString())) {
-            club.append("TRIP");
+            club.append(EnumResultType.TRIP);
         }
 
         Map<String, Object> result = new HashMap<>();

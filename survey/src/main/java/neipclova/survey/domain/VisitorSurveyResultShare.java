@@ -5,11 +5,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import lombok.Setter;
 import neipclova.survey.domain.common.TimeEntity;
 import neipclova.survey.domain.enums.EnumShareActionType;
 
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Entity
 public class VisitorSurveyResultShare extends TimeEntity {

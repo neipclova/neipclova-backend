@@ -78,7 +78,7 @@ public class ResultController {
         // mbti에 따른 result type 리턴하기
         if (Arrays.asList("ENFJ", "ESFJ").contains(mbti.toString())) {
             club.append(EnumResultType.STAY_HYDRATED);
-        } else if (Arrays.asList("ISJF", "ISFP", "ISFJ").contains(mbti.toString())) {
+        } else if (Arrays.asList("ISFJ", "ISFP", "ISTP").contains(mbti.toString())) {
             club.append(EnumResultType.CALLIGRAPHY);
         } else if (Arrays.asList("ENTP", "INTP").contains(mbti.toString())) {
             club.append(EnumResultType.DEBATE);

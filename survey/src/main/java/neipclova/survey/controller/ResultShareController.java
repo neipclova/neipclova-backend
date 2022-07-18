@@ -20,8 +20,9 @@ public class ResultShareController {
         this.visitorSurveyResultShareService = visitorSurveyResultShareService;
     }
 
-    @PostMapping("/share")
+    @PostMapping("/share/{survey_type}")
     public ResponseEntity<Map<String, Object>> share(
+        @PathVariable EnumSurveyType survey_type,
         @RequestParam("visitorSurveyResultId") Long visitorSurveyResultId,
         @RequestParam("shareActionType") EnumShareActionType shareActionType
     ) {

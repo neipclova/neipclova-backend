@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: neipclova
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: root
@@ -17,6 +19,15 @@ spring:
     init:
       data-locations: classpath:initSurveyResultType.sql, classpath:initQuestion.sql, classpath:initOption.sql
       mode: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "prometheus"
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 logging.level:
   org.hibernate.SQL: debug

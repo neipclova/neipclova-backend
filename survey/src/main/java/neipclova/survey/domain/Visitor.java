@@ -1,6 +1,9 @@
 package neipclova.survey.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +12,9 @@ import javax.persistence.*;
 import neipclova.survey.domain.common.TimeEntity;
 
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 public class Visitor extends TimeEntity {
 
@@ -29,4 +34,5 @@ public class Visitor extends TimeEntity {
 
     @Column(name = "access_url")
     private String accessUrl;
+
 }

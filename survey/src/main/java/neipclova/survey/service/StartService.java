@@ -15,7 +15,7 @@ public class StartService {
     private final VisitorRepository visitorRepository;
     private final VisitorSurveyResultRepository visitorSurveyResultRepository;
 
-    public Long saveVisitor(Visitor visitor){
+    public final Long saveVisitor(Visitor visitor){
         visitorRepository.save(visitor);
         return visitor.getId();
     }

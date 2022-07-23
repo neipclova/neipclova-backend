@@ -12,6 +12,6 @@ import org.springframework.data.repository.query.Param;
 public interface VisitorSurveyAnswerRepository extends JpaRepository<VisitorSurveyAnswer, Long> {
 
     @Query("select vsa.option.mbtiType from VisitorSurveyAnswer vsa where vsa.visitorSurveyResult = :visitor_survey_result")
-    public List<EnumMbtiType> findScoreByVisitorSurveyResultId(@Param("visitor_survey_result") VisitorSurveyResult visitorSurveyResult);
+    public List<EnumMbtiType> findScoreByVisitorSurveyResultId(@Param("visitor_survey_result") VisitorSurveyResult visitor_survey_result);
 
 }

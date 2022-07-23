@@ -20,13 +20,13 @@ public class VisitorSurveyResultShareService {
     public final VisitorSurveyResultRepository visitorSurveyResultRepository;
 
     @Transactional
-    public Long addVisitorSurveyResultShare(Long visitorSurveyResultId, EnumShareActionType shareActionType) {
-        Optional<VisitorSurveyResult> visitorSurveyResult = visitorSurveyResultRepository.findById(visitorSurveyResultId);
+    public Long addVisitorSurveyResultShare(Long visitor_survey_result_id, EnumShareActionType share_action_type) {
+        Optional<VisitorSurveyResult> visitorSurveyResult = visitorSurveyResultRepository.findById(visitor_survey_result_id);
 
         VisitorSurveyResultShare visitorSurveyResultShare = new VisitorSurveyResultShare();
 
         visitorSurveyResultShare.setVisitorSurveyResult(visitorSurveyResult.get());
-        visitorSurveyResultShare.setShareActionType(shareActionType);
+        visitorSurveyResultShare.setShareActionType(share_action_type);
 
         visitorSurveyResultShareRepository.save(visitorSurveyResultShare);
         return visitorSurveyResultShare.getId();

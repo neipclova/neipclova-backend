@@ -18,6 +18,6 @@ public class VisitorService {
         return visitor.getId();
     }
 
-    public Visitor findOne(Long visitorId) { return visitorRepository.findOne(visitorId); }
+    public Visitor findOne(Long visitor_id) { return visitorRepository.findOne(visitor_id); }
 
 }

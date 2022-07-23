@@ -9,7 +9,7 @@ public interface VisitorRepository extends JpaRepository<Visitor, Long> {
     //@Query("select count(distinct v ) from Visitor v")
     //Integer countDistinct();
 
-    @Query("select v from Visitor v where v.id = :visitorId")
-    public Visitor findOne(@Param("visitorId") Long visitorId);
+    @Query("select v from Visitor v where v.id = :visitor_id")
+    public Visitor findOne(@Param("visitor_id") Long visitor_id);
 
 }

@@ -21,3 +21,14 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
 #  org.hibernate.type: trace
+
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: logs
+      suffix: .log
+      prefix: access_log
+      file-date-format: .yyyy-MM-dd
+      pattern: '%h %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i" %q'
+    basedir: .

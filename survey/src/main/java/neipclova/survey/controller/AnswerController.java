@@ -21,9 +21,9 @@ public class AnswerController {
 
     @PostMapping("/answer")
     public void saveVisitorSurveyAnswer(@RequestBody @Valid SaveVisitorSurveyAnswerDto saveVisitorSurveyAnswerDto) throws IllegalAccessException {
-        Long VisitorSurveyResultId = saveVisitorSurveyAnswerDto.getVisitorSurveyResultId();
-        Long questionId = saveVisitorSurveyAnswerDto.getQuestionId();
-        Long optionId = saveVisitorSurveyAnswerDto.getOptionId();
+        Long VisitorSurveyResultId = saveVisitorSurveyAnswerDto.getVisitor_survey_result_id();
+        Long questionId = saveVisitorSurveyAnswerDto.getQuestion_id();
+        Long optionId = saveVisitorSurveyAnswerDto.getOption_id();
         answerService.saveVisitorSurveyAnswer(VisitorSurveyResultId, questionId, optionId);
     }
 

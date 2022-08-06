@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 public class SaveVisitorSurveyAnswerDto {
 
     @NotNull
-    private Long visitorSurveyResultId;
+    private Long visitor_survey_result_id;
 
     @NotNull
-    private Long questionId;
+    private Long question_id;
 
     @NotNull
-    private Long optionId;
+    private Long option_id;
 }

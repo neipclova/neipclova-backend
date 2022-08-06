@@ -33,7 +33,6 @@ public class ResultController {
     @PostMapping("/result/{survey_type}")
     public ResponseEntity<Map<String, Object>> scoreResult(@PathVariable EnumSurveyType survey_type,
         @RequestParam Long visitor_survey_result_id) {
-
         // 답변에 매칭되는 mbti score 리스트 가져오기
         List<EnumMbtiType> answers = visitorSurveyAnswerService.getScores(visitor_survey_result_id);
 
@@ -74,25 +73,26 @@ public class ResultController {
         }
 
         StringBuilder club = new StringBuilder();
+        EnumMbtiType mbtiType = EnumMbtiType.valueOf(mbti.toString());
 
         // mbti에 따른 result type 리턴하기
-        if (Arrays.asList(EnumMbtiType.ENFJ, EnumMbtiType.ESFJ).contains(mbti.toString())) {
+        if (Arrays.asList(EnumMbtiType.ENFJ, EnumMbtiType.ESFJ).contains(mbtiType)) {
             club.append(EnumResultType.STAY_HYDRATED);
-        } else if (Arrays.asList(EnumMbtiType.ISFJ, EnumMbtiType.ISFP, EnumMbtiType.ISTP).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.ISFJ, EnumMbtiType.ISFP, EnumMbtiType.ISTP).contains(mbtiType)) {
             club.append(EnumResultType.CALLIGRAPHY);
-        } else if (Arrays.asList(EnumMbtiType.ENTP, EnumMbtiType.INTP).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.ENTP, EnumMbtiType.INTP).contains(mbtiType)) {
             club.append(EnumResultType.DEBATE);
-        } else if (Arrays.asList(EnumMbtiType.INTJ).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.INTJ).contains(mbtiType)) {
             club.append(EnumResultType.STOCK_INVESTMENT);
-        } else if (Arrays.asList(EnumMbtiType.INFP).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.INFP).contains(mbtiType)) {
             club.append(EnumResultType.READING);
-        } else if (Arrays.asList(EnumMbtiType.ESTP).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.ESTP).contains(mbtiType)) {
             club.append(EnumResultType.CLIMBING);
-        } else if (Arrays.asList(EnumMbtiType.ENFP, EnumMbtiType.ESFP).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.ENFP, EnumMbtiType.ESFP).contains(mbtiType)) {
             club.append(EnumResultType.DANCE);
-        } else if (Arrays.asList(EnumMbtiType.ESTJ, EnumMbtiType.ENTJ, EnumMbtiType.ISTJ).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.ESTJ, EnumMbtiType.ENTJ, EnumMbtiType.ISTJ).contains(mbtiType)) {
             club.append(EnumResultType.BAND);
-        } else if (Arrays.asList(EnumMbtiType.INFJ).contains(mbti.toString())) {
+        } else if (Arrays.asList(EnumMbtiType.INFJ).contains(mbtiType)) {
             club.append(EnumResultType.TRIP);
         }
 
